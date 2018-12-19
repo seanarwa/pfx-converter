@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>PFX Converter</title>
+	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/main.css">
+	
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script>if (window.module) module = window.module;</script>
+  </head>
+	<body>
+		<div class="shadow p-3 m-5 bg-white rounded">
+			<form>
+				<div class="custom-file">
+					<label class="custom-file-label" for="inputPEMFile">Choose a PEM file (.pem)</label>
+					<input type="file" class="custom-file-input" id="inputPEMFile" accept=".pem">
+					<label class="custom-file-label" for="inputPEMFile">Choose a PEM file (.pem)</label>
+				</div>
+				<div class="custom-file mt-2">
+					<input type="file" class="custom-file-input" id="inputPrivateKeyFile" accept=".key">
+					<label class="custom-file-label" for="inputPrivateKeyFile">Choose a private key file (.key)</label>
+				</div>
+				<div class="custom-file mt-2">
+					<input type="file" class="custom-file-input" id="inputPublicKeyFile" accept=".key">
+					<label class="custom-file-label" for="inputPublicKeyFile">Choose a public key file (.key)</label>
+				</div>
+				<div class="form-group mt-2">
+					<button type="button" id="buttonConvert" class="btn btn-primary">Convert</button>
+				</div>
+			</form>
+		</div>
+		
+		<script>
+			const {dialog} = require('electron').remote;
+			$('.custom-file-input').on('change',function(){
+				var fileName = $(this).val().split('\\').pop();
+				$(this).next('.custom-file-label').html(fileName);
+			});
+			$('#buttonConvert').click(function() {
+				var path = dialog.showOpenDialog({
+					properties: ['openDirectory']
+				});
+			});
+		</script>
+	</body>
+</html>
+

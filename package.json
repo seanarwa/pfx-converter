@@ -1,8 +1,13 @@
 {
   "name": "PFX-Converter",
   "version": "0.0.1",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "start": "electron ."
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "chilkat_electron_2_0_win32": "^9.50.75",
+    "jquery": "^3.3.1"
   }
 }
